@@ -2,7 +2,7 @@
 {
     private int playerHealth
     {
-        set
+        public set
         {
             playerHealth = value;
             updateUI();
@@ -14,7 +14,7 @@
     }
     private int enemyHealth
     {
-        set
+        public set
         {
             enemyHealth = value;
             updateUI();
