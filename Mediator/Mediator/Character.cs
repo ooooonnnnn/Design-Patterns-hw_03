@@ -6,6 +6,7 @@ namespace Mediator
 {
     internal class Character
     {
+        private CombatManager comnbatManager;
         private string name;
         private float maxHP;
         private float currentHP;
@@ -17,8 +18,9 @@ namespace Mediator
         public float Damage => damage;
         public bool IsDead => isDead;
 
-        public Character(string name, float maxHP, float damage)
+        public Character(CombatManager combatManager, string name, float maxHP, float damage)
         {
+            this.comnbatManager = combatManager;
             this.name = name;
             this.maxHP = maxHP;
             currentHP = maxHP;
@@ -44,9 +46,9 @@ namespace Mediator
                 currentHP = maxHP;
         }
 
-        public void DealDamage(Character victim)
+        public void DealDamage()
         {
-            victim.TakeDamage(damage);
+            comnbatManager.DealDamage(this);
         }
     }
 }
