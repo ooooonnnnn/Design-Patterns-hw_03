@@ -11,7 +11,7 @@
         {
             return playerHealth;
         }
-    };
+    }
     private int enemyHealth
     {
         set
@@ -23,9 +23,9 @@
         {
             return enemyHealth;
         }
-    };
+    }
 
-    private updateUI()
+    void updateUI()
     {
         Console.WriteLine($"Player health : {playerHealth}");
         Console.WriteLine($"Enemy health : {enemyHealth}");
