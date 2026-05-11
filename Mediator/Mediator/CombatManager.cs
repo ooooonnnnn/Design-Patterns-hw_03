@@ -7,17 +7,11 @@ namespace Mediator;
 /// </summary>
 public class CombatManager(UI ui)
 {
-    //Character player, enemy;
+    Character player, enemy;
 
-    public void PlayerDealDamage()
+    public void DealDamage(Character damageDealer)
     {
         Console.WriteLine("Player Deals Damage");
         ui.enemyHealth = 0;
-    }
-
-    public void EnemyDealDamage()
-    {
-        Console.WriteLine("Enemy Deals Damage");
-        ui.playerHealth = 0;
     }
 }
