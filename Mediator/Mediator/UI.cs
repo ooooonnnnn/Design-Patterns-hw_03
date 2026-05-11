@@ -1,25 +1,25 @@
 ﻿public class UI
 {
-    private int playerHealth
+    public int playerHealth
     {
-        public set
+        set
         {
             playerHealth = value;
             updateUI();
         }
-        get
+        private get
         {
             return playerHealth;
         }
     }
-    private int enemyHealth
+    public int enemyHealth
     {
-        public set
+        set
         {
             enemyHealth = value;
             updateUI();
         }
-        get
+        private get
         {
             return enemyHealth;
         }
