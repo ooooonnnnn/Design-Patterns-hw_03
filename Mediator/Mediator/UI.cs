@@ -1,33 +1,25 @@
-﻿public class UI
+﻿using Mediator;
+
+public class UI
 {
-    public int playerHealth
+    private CombatManager combatManager;
+
+    public void SetCombatManager(CombatManager cm)
     {
-        set
-        {
-            playerHealth = value;
-            updateUI();
-        }
-        private get
-        {
-            return playerHealth;
-        }
+        combatManager = cm;
     }
-    public int enemyHealth
+    public void PlayerAttackText(float dmg)
     {
-        set
-        {
-            enemyHealth = value;
-            updateUI();
-        }
-        private get
-        {
-            return enemyHealth;
-        }
+        Console.WriteLine($"Player attacked enemy for {dmg} damage!");
+        UpdateUi();
     }
 
-    void updateUI()
+    private void UpdateUi()
     {
-        Console.WriteLine($"Player health : {playerHealth}");
-        Console.WriteLine($"Enemy health : {enemyHealth}");
+        Console.WriteLine($"Player health : {combatManager.GetPlayer().CurrentHP}");
+        foreach (var enemy in combatManager.GetEnemies())
+        {
+            Console.WriteLine($"Enemy {enemy.Name} health : {enemy.CurrentHP}");
+        }
     }
 }

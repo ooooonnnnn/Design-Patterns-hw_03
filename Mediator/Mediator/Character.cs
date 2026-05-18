@@ -1,54 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Mediator
+﻿namespace Mediator
 {
-    internal class Character
+    public class Character
     {
-        private CombatManager comnbatManager;
-        private string name;
-        private float maxHP;
-        private float currentHP;
-        private float damage;
-        private bool isDead = false;
+        private static readonly Random _rand = new();
 
-        public string Name => name;
-        public float CurrentHP => currentHP;
-        public float Damage => damage;
-        public bool IsDead => isDead;
+        private string _name;
+        private float _maxHP;
+        private float _currentHP;
+        private float _damage;
+        private bool _isDead = false;
 
-        public Character(CombatManager combatManager, string name, float maxHP, float damage)
+        public string Name => _name;
+        public float CurrentHP => _currentHP;
+        public bool IsDead => _isDead;
+
+        public Character(string name, float maxHP, float damage)
         {
-            this.comnbatManager = combatManager;
-            this.name = name;
-            this.maxHP = maxHP;
-            currentHP = maxHP;
-            this.damage = damage;
+            _name = name;
+            _maxHP = maxHP;
+            _currentHP = maxHP;
+            _damage = damage;
         }
 
-        public void TakeDamage(Character actor)
-        {
-            currentHP -= actor.Damage;
 
-            if (currentHP <= 0)
+        public float GetDamage()
+        {
+            return _damage * _rand.Next(1, 3);
+        }
+
+        public void TakeDamage(float damage)
+        {
+            _currentHP -= damage;
+
+            if (_currentHP <= 0)
             {
-                currentHP = 0;
-                isDead = true;
+                _currentHP = 0;
+                _isDead = true;
             }
         }
-
         public void Heal(float amount)
         {
-            currentHP += amount;
+            if (_isDead) return;
 
-            if (currentHP > maxHP) 
-                currentHP = maxHP;
-        }
+            _currentHP += amount;
 
-        public void DealDamage()
-        {
-            comnbatManager.DealDamage(this);
+            if (_currentHP > _maxHP)
+                _currentHP = _maxHP;
         }
     }
 }
